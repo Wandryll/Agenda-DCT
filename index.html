@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b49">
+  <title>Agenda Semanal de Atividades – DCT</title>
+  <link rel="icon" href="./assets/images/logo-dct.jpeg">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/calendar.css">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="./index.html" aria-label="DCT — início"><img src="./assets/images/logo-dct.jpeg" alt="Logo DCT"><span><strong>DCT</strong><small>Departamento de Ciência e Tecnologia</small></span></a>
+      <nav aria-label="Navegação principal"><a href="#agenda" class="active">Agenda</a><a href="#week">Semana atual</a><a href="#activities">Atividades</a></nav>
+      <span class="environment">Demonstração · Fase 1</span>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-heading"><div><p class="eyebrow">ORGANIZAÇÃO E PLANEJAMENTO</p><h1>Agenda Semanal de Atividades</h1><p class="subtitle">A rotina do departamento e os compromissos da equipe, em um só lugar.</p></div><button class="primary" id="new-activity">+ Nova atividade</button></div>
+    <p class="demo-notice">Você está usando dados de demonstração. As alterações ficam somente nesta sessão e serão descartadas ao recarregar.</p>
+    <section class="agenda-layout" id="agenda" aria-label="Agenda mensal e dia selecionado">
+      <div class="panel calendar-panel">
+        <div class="section-heading"><div><p class="eyebrow">CALENDÁRIO MENSAL</p><h2 id="month-label" aria-live="polite"></h2></div><div class="calendar-controls"><button id="previous-month" aria-label="Mês anterior">‹</button><button id="today">Hoje</button><button id="next-month" aria-label="Próximo mês">›</button></div></div>
+        <div class="weekdays" aria-hidden="true"><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span><span>DOM</span></div>
+        <div id="calendar" class="calendar-grid" role="group" aria-label="Dias do mês"></div>
+        <div class="calendar-legend"><span><i class="legend-dot"></i> Atividade cadastrada</span><span><i class="legend-today"></i> Hoje</span></div>
+      </div>
+      <section class="panel day-panel" aria-labelledby="day-heading"><p class="eyebrow">DIA SELECIONADO</p><h2 id="day-heading" aria-live="polite"></h2><p id="day-weekday" class="muted"></p><div id="day-routine"></div><div class="section-heading compact"><h3>Atividades do dia</h3><span id="day-count" class="count"></span></div><div id="day-activities"></div><button class="secondary full" id="add-to-day">+ Adicionar neste dia</button></section>
+    </section>
+    <section id="week" class="week-section" aria-labelledby="week-heading"><div class="section-heading"><div><p class="eyebrow">ROTINA E COMPROMISSOS</p><h2 id="week-heading">Semana atual</h2><p id="week-period" class="muted"></p></div><span class="section-note">Segunda a sexta-feira</span></div><div id="weekly-days" class="weekly-grid"></div></section>
+    <section id="activities" class="panel activities-panel" aria-labelledby="activities-heading"><div class="section-heading"><div><p class="eyebrow">COMPROMISSOS DA EQUIPE</p><h2 id="activities-heading">Atividades cadastradas</h2></div><span id="total-count" class="count"></span></div><p class="muted list-caption">Atividades do mês exibido no calendário. Selecione uma atividade para editar seus detalhes.</p><div id="activity-list"></div></section>
+    <footer><span>Departamento de Ciência e Tecnologia · DCT</span><span>Agenda semanal · Versão de demonstração</span></footer>
+  </main>
+  <dialog id="activity-dialog" aria-labelledby="modal-title"><form id="activity-form"><div class="section-heading"><div><p class="eyebrow">AGENDA DCT</p><h2 id="modal-title">Nova atividade</h2></div><button type="button" class="icon-button" data-close aria-label="Fechar formulário">×</button></div><p class="muted">Os campos com * são obrigatórios.</p>
+    <label>Título *<input name="title" required maxlength="160" placeholder="Ex.: Reunião de planejamento"></label>
+    <div class="form-grid"><label>Data *<input type="date" name="activity_date" required min="1900-01-01" max="9999-12-31"></label><label>Categoria *<select name="category" required></select></label><label>Horário inicial<input type="time" name="start_time"></label><label>Horário final<input type="time" name="end_time"></label><label>Responsável<input name="responsible" maxlength="120" placeholder="Ex.: Equipe DCT"></label><label>Status<select name="status" required></select></label></div>
+    <label>Descrição<textarea name="description" rows="3" maxlength="3000" placeholder="Informações sobre a atividade"></textarea></label><p id="form-error" class="form-error" role="alert"></p><div class="modal-actions"><button type="button" id="delete-activity" class="danger" hidden>Excluir atividade</button><div><button type="button" class="secondary" data-close>Cancelar</button><button type="submit" class="primary">Salvar atividade</button></div></div>
+  </form></dialog>
+  <dialog id="delete-dialog" aria-labelledby="delete-title"><h2 id="delete-title">Excluir atividade?</h2><p id="delete-description"></p><p class="muted">Essa ação remove a atividade desta demonstração.</p><div class="modal-actions"><button type="button" id="cancel-delete" class="secondary">Cancelar</button><button type="button" id="confirm-delete" class="danger">Excluir</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="demo-notice">Ative o JavaScript no navegador para utilizar a agenda.</p></noscript>
+</body>
+</html>
